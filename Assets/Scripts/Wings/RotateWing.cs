@@ -20,11 +20,13 @@ public class RotateWing : MonoBehaviour
     float upAngledir = 1f;
     float forwardSpeed;
     float upSpeed;
+    Vector3 startPos;
     // Start is called before the first frame update
     void Start()
     {
         forwardSpeed = (forwardArcAngle / timeForBeatforward);
         upSpeed = (upArcAngle / timeForBeatup);
+        startPos = transform.localPosition;
     }
 
     // Update is called once per frame
@@ -41,16 +43,23 @@ public class RotateWing : MonoBehaviour
         forwardAngleTravelled += forwardAngledir * (forwardSpeed) * Time.deltaTime;
 
 
-        transform.RotateAround(pivotTransform.position, relForward, forwardAngledir * (forwardSpeed) * Time.deltaTime);
+        transform.RotateAround(pivotTransform.localPosition, relForward, forwardAngledir * (forwardSpeed) * Time.deltaTime);
 
         if (Mathf.Abs(upAngleTravelled + upAngledir * (upSpeed) * Time.deltaTime) >= upArcAngle)
         {
             upAngledir *= -1;
         }
+       
+
 
         upAngleTravelled += upAngledir * (upSpeed) * Time.deltaTime;
 
 
-        transform.RotateAround(pivotTransform.position, relUp, upAngledir * (upSpeed) * Time.deltaTime);
+        transform.RotateAround(pivotTransform.localPosition, relUp, upAngledir * (upSpeed) * Time.deltaTime);
+
+		if ((startPos - transform.position).magnitude > startPos.magnitude*0.1)
+		{
+            transform.localPosition = startPos;
+		}
     }
 }

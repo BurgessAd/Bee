@@ -26,6 +26,7 @@ public class PollenAttraction : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
+        Debug.Log("Hit");
         // Add magneteism
         if(other.CompareTag("Pollen")){
             Debug.Log("Magnet");
@@ -41,10 +42,17 @@ public class PollenAttraction : MonoBehaviour
             other.transform.parent = bee.transform;
             other.GetComponent<Rigidbody>().velocity = Vector3.zero;
             other.GetComponent<Rigidbody>().isKinematic =true;
+            other.GetComponent<Rigidbody>().useGravity  = false;
+            foreach (Collider collider in other.GetComponent<Rigidbody>().GetComponents<Collider>())
+            {
+                collider.enabled=false;
+            }
+            
+
             other.tag="Stuck";
             return;
         }
-
+        Debug.Log(other.tag);
 
     }
 
@@ -52,6 +60,8 @@ public class PollenAttraction : MonoBehaviour
         if(other.CompareTag("Magnetism")){
             rgBalls.Remove(other.GetComponent<Rigidbody>());
             other.tag="Pollen";
+            Debug.Log("Exit");
+            return;
             // other.GetComponent<Rigidbody>().velocity = Vector3.zero;
             // other.GetComponent<Rigidbody>().isKinematic =false;
         }

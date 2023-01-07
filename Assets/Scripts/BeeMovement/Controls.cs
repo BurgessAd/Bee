@@ -14,11 +14,16 @@ public class Controls : MonoBehaviour
     Vector3 relforward;
     public float forwardForce = 400;
     public float upwardForce = 400;
+
+    public float scalingRange = 0.1f;
+    public float timeOfScale = 0.1f;
+    public float speedOfScale;
+    public int scaleDir = 1;
     // Start is called before the first frame update
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        
+        speedOfScale = scalingRange / timeOfScale;
 
 
        
@@ -28,6 +33,14 @@ public class Controls : MonoBehaviour
     void Update()
     {
 
+        if(transform.localScale.x>1 || transform.localScale.x < 1 - scalingRange)
+		{
+            scaleDir *= -1;
+		}
+        transform.localScale += Vector3.one*speedOfScale * Time.deltaTime*scaleDir;
+
+
+
 
 
         relforward = -forwardCube.transform.right;
@@ -35,7 +48,7 @@ public class Controls : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            force = relforward *forwardForce+ new Vector3(0, upwardForce, 0);
+            force = (relforward *forwardForce+ new Vector3(0, upwardForce, 0))*Input.GetAxis("Fire1");
             m_Rigidbody.AddForce(force);
         }
 

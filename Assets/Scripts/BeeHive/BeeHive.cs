@@ -27,11 +27,18 @@ public class BeeHive : MonoBehaviour
 
 
         Debug.Log("Pollened");
-        if (other.CompareTag("Stuck"))
+        if (other.CompareTag("Bee"))
 		{
-            numPollen += 1;
-            Debug.Log("Detected Stuck");
-            Destroy(other.gameObject);
+            foreach (Transform child in other.transform)
+			{
+				if (child.CompareTag("Stuck"))
+				{
+                    numPollen++;
+                    Destroy(child.gameObject);
+                    
+				}
+			}
+    
 		}
     }
 }
