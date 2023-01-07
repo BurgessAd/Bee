@@ -5,22 +5,31 @@ using UnityEngine;
 public class Controls : MonoBehaviour
 {
     Rigidbody m_Rigidbody;
-    float m_Speed;
+    public float m_Speed= 10.0f;
     float rotationSpeed;
-
+    float force;
     // Start is called before the first frame update
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        m_Speed = 10.0f;
-        rotationSpeed = 20.0f;    
+       
+        rotationSpeed = 20.0f;
+        force = 1f;
     }
     
     // Update is called once per frame
     void Update()
     {
 
-        m_Rigidbody.velocity = -transform.right * m_Speed;
+        if (Vector3.Dot(m_Rigidbody.velocity, -transform.right) <= m_Speed)
+		{
+            m_Rigidbody.AddForce(-transform.right * force);
+        }
+
+        if(Input.GetButtonDown("Fire1"))
+		{
+            m_Rigidbody.AddForce(0,0,10);
+        }
 
 
        
