@@ -52,8 +52,8 @@ public class PollenAttraction : MonoBehaviour
         if(other.CompareTag("Magnetism")){
             rgBalls.Remove(other.GetComponent<Rigidbody>());
             other.tag="Pollen";
-            other.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            other.GetComponent<Rigidbody>().isKinematic =true;
+            // other.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            // other.GetComponent<Rigidbody>().isKinematic =false;
         }
     }
 }
