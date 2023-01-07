@@ -92,6 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5235834994980097382}
+  - component: {fileID: 3771333252274485029}
   m_Layer: 0
   m_Name: MinecraftBee
   m_TagString: Untagged
@@ -115,6 +116,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &3771333252274485029
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891679417864640476}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &5207325875951563472
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +224,6 @@ GameObject:
   - component: {fileID: 7503018442396186201}
   - component: {fileID: 6171001178285881967}
   - component: {fileID: 4389803844548970220}
-  - component: {fileID: 7562487978987288972}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -282,19 +296,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7562487978987288972
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5650378757984461258}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.00000047683716, z: 0.0000019073486}
 --- !u!1 &6712729139665074159
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +307,7 @@ GameObject:
   - component: {fileID: 2626173256955129582}
   - component: {fileID: 536056497875143649}
   - component: {fileID: 2961185445872529607}
+  - component: {fileID: 7343233884575105523}
   m_Layer: 0
   m_Name: b
   m_TagString: Untagged
@@ -381,3 +383,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7343233884575105523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6712729139665074159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5d05715cbc0434383f4be5ae78672e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceFactor: 1
+  bee: {fileID: 6712729139665074159}
