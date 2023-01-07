@@ -8,10 +8,12 @@ public class Controls : MonoBehaviour
 
     Rigidbody m_Rigidbody;
     public float m_Speed= 10.0f;
-    float rotationSpeed = 50f;
-    float force;
+    public float rotationSpeed = 50f;
+    Vector3 force;
     public GameObject forwardCube;
     Vector3 relforward;
+    public float forwardForce = 400;
+    public float upwardForce = 400;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,7 @@ public class Controls : MonoBehaviour
         
 
 
-        force = 1f;
+       
     }
 
     // Update is called once per frame
@@ -33,10 +35,11 @@ public class Controls : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            Vector3 forcedir = relforward *400+ new Vector3(0, 400, 0);
-            m_Rigidbody.AddForce(forcedir);
+            force = relforward *forwardForce+ new Vector3(0, upwardForce, 0);
+            m_Rigidbody.AddForce(force);
         }
 
+        float angle = Vector3.Angle(relforward, Vector3.up);
 
 
         float rotationUD = Input.GetAxis("Vertical") * rotationSpeed;
@@ -51,8 +54,10 @@ public class Controls : MonoBehaviour
 
         // Rotate around our y-axis
 
-        
-        transform.Rotate(0, 0, -rotationUD);
+        if (angle -rotationUD >= 60 && angle - rotationUD <= 120)
+        {
+            transform.Rotate(0, 0, -rotationUD);
+        }
         //cam.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, rotationUD);
         transform.Rotate(0, rotationLR, 0, Space.World) ;
         
