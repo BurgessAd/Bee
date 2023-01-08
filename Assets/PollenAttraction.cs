@@ -6,6 +6,7 @@ using System;
 public class PollenAttraction : MonoBehaviour
 {
     public float forceFactor = 1f;
+    public GameObject manager;
 
     List<Rigidbody> rgBalls = new List<Rigidbody>();
 
@@ -26,10 +27,9 @@ public class PollenAttraction : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("Hit");
         // Add magneteism
         if(other.CompareTag("Pollen")){
-            Debug.Log("Magnet");
+            // Debug.Log("Magnet");
             rgBalls.Add(other.GetComponent<Rigidbody>());
             other.tag="Magnetism";
             return;
@@ -37,7 +37,7 @@ public class PollenAttraction : MonoBehaviour
         
         // make sticky
         if(other.CompareTag("Magnetism")){
-            Debug.Log("Stuck");
+            // Debug.Log("Stuck");
             rgBalls.Remove(other.GetComponent<Rigidbody>());
             other.transform.parent = bee.transform;
             other.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -53,6 +53,7 @@ public class PollenAttraction : MonoBehaviour
             return;
         }
         if(other.CompareTag("Bear")){
+            manager.GetComponent<UIManager>().OnLoseGame();
             Debug.Log("Game Over");
             return;
         }
@@ -63,7 +64,7 @@ public class PollenAttraction : MonoBehaviour
         if(other.CompareTag("Magnetism")){
             rgBalls.Remove(other.GetComponent<Rigidbody>());
             other.tag="Pollen";
-            Debug.Log("Exit");
+            // Debug.Log("Exit");
             return;
             // other.GetComponent<Rigidbody>().velocity = Vector3.zero;
             // other.GetComponent<Rigidbody>().isKinematic =false;

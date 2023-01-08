@@ -5,7 +5,7 @@ using UnityEngine;
 public class BeeHive : MonoBehaviour
 {
 
-    public GameObject Bee;
+    public GameObject Bear;
     public GameObject pollenPrefab;
     public int numPollen = 0;
     public GameObject HoneyJar;
@@ -40,5 +40,8 @@ public class BeeHive : MonoBehaviour
 			}
     
 		}
+        if (numPollen > 0){
+            Bear.GetComponent<BearController>().AwakenFromHisEternalSlumber();
+        }
     }
 }
