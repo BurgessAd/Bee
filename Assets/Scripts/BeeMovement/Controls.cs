@@ -19,16 +19,20 @@ public class Controls : MonoBehaviour
     public float scalingRange = 0.1f;
     public float timeOfScale = 0.1f;
     public float speedOfScale;
+    public float glideDrag = 0.0f;
     public int scaleDir = 1;
+    float defaultGrav;
     float distToGround;
+    Vector3 defaultRotation;
     Vector3 relRight;
+    float targetDrag;
     // Start is called before the first frame update
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
         speedOfScale = scalingRange / timeOfScale;
         distToGround = GetComponent<SphereCollider>().bounds.extents.y;
-
+        targetDrag = defaultDrag;
        
     }
 
@@ -43,7 +47,11 @@ public class Controls : MonoBehaviour
     void Update()
     {
 
-        if(transform.localScale.x>=1)
+
+        relforward = -forwardCube.transform.right;
+        relRight = forwardCube.transform.forward;
+
+        if (transform.localScale.x>=1)
 		{
             scaleDir = -1;
 		}
@@ -51,28 +59,40 @@ public class Controls : MonoBehaviour
 		{
             scaleDir = 1;
 		}
-        transform.localScale += Vector3.one*speedOfScale * Time.deltaTime*scaleDir;
+                
         
+        m_Rigidbody.drag = m_Rigidbody.drag != targetDrag ? Mathf.Lerp(m_Rigidbody.drag, targetDrag, Time.deltaTime * 2) : targetDrag;
 
 
-
-
-
-        relforward = -forwardCube.transform.right;
-        relRight = forwardCube.transform.forward;
-
+        transform.localScale += Vector3.one*speedOfScale * Time.deltaTime * scaleDir;
         if (Input.GetButtonDown("Fire1"))
         {
             force = (relforward *forwardForce+ new Vector3(0, upwardForce, 0))*Input.GetAxis("Fire1");
-            m_Rigidbody.AddForce(force);
+            m_Rigidbody.AddForce(force,ForceMode.Impulse);
         }
 
         if (Input.GetButtonUp("Fire2"))
         {
-            m_Rigidbody.drag = defaultDrag;
+            targetDrag= defaultDrag;
         }
 
         float angle = Vector3.Angle(relforward, Vector3.up);
+
+
+		if (Input.GetKeyDown("space"))
+		{
+            //m_Rigidbody.useGravity = false;
+            targetDrag = glideDrag;
+            m_Rigidbody.drag = glideDrag;
+		}
+
+
+        if (Input.GetKeyUp("space"))
+        {
+            //m_Rigidbody.useGravity = true;
+            targetDrag= defaultDrag;
+        }
+
 
         if (IsGrounded())
 		{
@@ -87,7 +107,7 @@ public class Controls : MonoBehaviour
 		{
             if (Input.GetButtonDown("Fire2"))
             {
-                m_Rigidbody.drag = stoppingDrag;
+                targetDrag = stoppingDrag;
             }
 			
 
@@ -118,7 +138,15 @@ public class Controls : MonoBehaviour
         transform.Rotate(0, rotationLR, 0, Space.World);
 
 
-        //Debug.DrawLine(transform.position, transform.position + 100*relforward, Color.white, 2.5f);
-
+        //Debug.DrawLine(transform.position, transform.position + 100*relforward, Color.white, 2.5f)
     }
+    void FixedUpdate()
+	{
+
+        if (Input.GetKey("space"))
+        {
+            m_Rigidbody.AddForce(Physics.gravity * -0.7f,ForceMode.Acceleration);
+        }
+    }
+
 }

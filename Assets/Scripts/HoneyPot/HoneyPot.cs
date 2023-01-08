@@ -30,9 +30,9 @@ public class HoneyPot : MonoBehaviour
             honey.SetActive(false);
         }
 
-        honey.transform.localScale = new Vector3(.9f, honeyCount / (maxHoney+1.0f), 0.9f);
+        honey.transform.localScale = new Vector3(honey.transform.localScale.x, 0.65f* honeyCount / (maxHoney+1.0f), honey.transform.localScale.z);
         Vector3 temp = honey.transform.localPosition;
-        honey.transform.localPosition = new Vector3(temp.x, starty + honeyCount / (maxHoney + 1.0f), temp.z);
+        honey.transform.localPosition = new Vector3(temp.x,  starty + 0.65f * honeyCount / (maxHoney + 1.0f), temp.z);
 
 
     }
