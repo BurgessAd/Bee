@@ -43,6 +43,7 @@ public class BearController : MonoBehaviour
 
     public void attack(){
         anim.ResetTrigger("WalkForward");
+        FindObjectOfType<AudioManager>().Play("Roar");
         string[] attacks = {"Attack1", "Attack2", "Attack3", "Attack5"};
         string attack = attacks[Random.Range(0,3)];
         // Debug.Log(attack);
@@ -50,6 +51,8 @@ public class BearController : MonoBehaviour
         agent.ResetPath();
     }
     public void AwakenFromHisEternalSlumber(){
+        FindObjectOfType<AudioManager>().Play("Roar");
         sleeping=false;
+        bee.GetComponent<PollenAttraction>().manager.GetComponent<UIManager>().OnBearHasAwakenFromHisEternalSlumber();
     }
 }

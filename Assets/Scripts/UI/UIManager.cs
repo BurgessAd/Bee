@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private CanvasGroup m_LoseLayoutGroup;
 
+    [SerializeField] private CanvasGroup m_AwakeLayoutGroup;
+
     [SerializeField] private CanvasGroup m_OpaqueLayoutGroup;
 
     [SerializeField] private CanvasEvent OnControlsEnabled = new CanvasEvent();
@@ -27,7 +29,8 @@ public class UIManager : MonoBehaviour
         None,
         Title,
         Win,
-        Lose
+        Lose,
+        Awake
     }
 
 	// Start is called before the first frame update
@@ -100,6 +103,13 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void OnBearHasAwakenFromHisEternalSlumber(){
+        currentOpenCanvas = CanvasOpen.Awake;
+        SetCanvasGroupActiveWithAlpha(m_AwakeLayoutGroup, true);
+        TweenCanvasToVisible(m_OpaqueLayoutGroup, 1.0f).setDelay(0.5f);
+    }
+
+
     void SetCanvasGroupActive(CanvasGroup canvasGroup, bool active) 
     {
         canvasGroup.blocksRaycasts = active;
@@ -112,6 +122,8 @@ public class UIManager : MonoBehaviour
         canvasGroup.interactable = active;
         canvasGroup.alpha = active ? 1.0f : 0.0f;
     }
+
+
 
     LTDescr TweenCanvasToVisible(CanvasGroup group, float time) 
     {
