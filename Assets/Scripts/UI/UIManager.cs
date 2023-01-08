@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private CanvasGroup m_OpaqueLayoutGroup;
 
+    [SerializeField] private CanvasGroup m_BearWarningGroup;
+
     [SerializeField] private CanvasEvent OnControlsEnabled = new CanvasEvent();
 
     [SerializeField] private CanvasEvent OnControlsDisabled = new CanvasEvent();
@@ -27,7 +29,8 @@ public class UIManager : MonoBehaviour
         None,
         Title,
         Win,
-        Lose
+        Lose,
+        Bear
     }
 
 	// Start is called before the first frame update
@@ -64,6 +67,27 @@ public class UIManager : MonoBehaviour
         currentOpenCanvas = CanvasOpen.None;
         OnEnableControls();
     }
+
+    public void BearWarning()
+	{
+        Debug.Log("Hey");
+
+        SetCanvasGroupActiveWithAlpha(m_BearWarningGroup, true);
+
+        TweenCanvasToVisible(m_MainCanvasLayoutGroup, 0.5f).setOnComplete(OnBearWarningShown);
+        
+    }
+
+    void OnBearWarningShown()
+	{
+        TweenCanvasToInvisible(m_MainCanvasLayoutGroup, 0.5f).setDelay(2f).setOnComplete(OnBearWarningComplete);
+       
+    }
+    void OnBearWarningComplete()
+	{
+        SetCanvasGroupActiveWithAlpha(m_BearWarningGroup, false);
+    }
+
 
     public void OnWinGame()
 	{

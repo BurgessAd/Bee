@@ -10,6 +10,7 @@ public class HoneyPot : MonoBehaviour
     public int maxHoney = 30;
     public GameObject honey;
     public float starty;
+    public UIManager uiManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +22,12 @@ public class HoneyPot : MonoBehaviour
     {
         if(honeyCount==0 && beehive.numPollen > 0)
 		{
+            Debug.Log("Beeps");
             honey.SetActive(true);
+            uiManager.BearWarning();
         }
+
+
 
         honeyCount = beehive.numPollen;
 		if (honeyCount == 0)

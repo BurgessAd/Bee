@@ -128,15 +128,16 @@ public class Controls : MonoBehaviour
 
             // Make it move 10 meters per second instead of 10 meters per frame...
             rotationUD *= Time.deltaTime;
-            
+
 
             // Move translation along the object's z-axis
 
 
             // Rotate around our y-axis
-
+            //Debug.Log("Pow");
             if (angle - rotationUD >= 60 && angle - rotationUD <= 120)
             {
+                //Debug.Log("Pow");
                 transform.Rotate(0, 0, -rotationUD);
             }
             //cam.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, rotationUD);

@@ -26,7 +26,7 @@ public class BeeHive : MonoBehaviour
     {
 
 
-        Debug.Log("Pollened");
+        //Debug.Log("Pollened");
         if (other.CompareTag("Bee"))
 		{
             foreach (Transform child in other.transform)

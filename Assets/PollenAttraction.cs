@@ -54,7 +54,7 @@ public class PollenAttraction : MonoBehaviour
         }
         if(other.CompareTag("Bear")){
             manager.GetComponent<UIManager>().OnLoseGame();
-            Debug.Log("Game Over");
+            //Debug.Log("Game Over");
             return;
         }
         Debug.Log(other.tag);
