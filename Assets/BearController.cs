@@ -53,6 +53,6 @@ public class BearController : MonoBehaviour
     public void AwakenFromHisEternalSlumber(){
         FindObjectOfType<AudioManager>().Play("Roar");
         sleeping=false;
-        bee.GetComponent<PollenAttraction>().manager.GetComponent<UIManager>().OnBearHasAwakenFromHisEternalSlumber();
+      
     }
 }

@@ -40,8 +40,6 @@ public class BeeHive : MonoBehaviour
 			}
     
 		}
-        if (numPollen > 0){
-            Bear.GetComponent<BearController>().AwakenFromHisEternalSlumber();
-        }
+        
     }
 }

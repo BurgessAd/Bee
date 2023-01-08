@@ -74,7 +74,7 @@ public class UIManager : MonoBehaviour
 
     public void BearWarning()
 	{
-        Debug.Log("Hey");
+        //Debug.Log("Hey");
 
         SetCanvasGroupActiveWithAlpha(m_BearWarningGroup, true);
 
@@ -95,6 +95,7 @@ public class UIManager : MonoBehaviour
 
     public void OnWinGame()
 	{
+        //Debug.Log("Beaten");
         if (currentOpenCanvas != CanvasOpen.None)
             return;
         OnDisableControls();
@@ -104,6 +105,7 @@ public class UIManager : MonoBehaviour
 	}
     public void OnLoseGame()
     {
+        
         if (currentOpenCanvas != CanvasOpen.None)
             return;
         OnDisableControls();
