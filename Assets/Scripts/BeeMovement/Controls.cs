@@ -39,6 +39,16 @@ public class Controls : MonoBehaviour
         return Physics.Raycast(transform.position, -Vector3.up, distToGround+0.013f);
 	}
 
+    public void OnControlsEnabled() 
+    {
+        enabled = true;
+    }
+
+    public void OnControlsDisabled() 
+    {
+        enabled = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
