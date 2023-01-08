@@ -339,6 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceFactor: 1
+  manager: {fileID: 0}
   bee: {fileID: 3767402179862721584}
 --- !u!54 &7593323802217701115
 Rigidbody:
@@ -396,11 +397,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  m_Speed: 10
+  m_Speed: 0.2
   rotationSpeed: 50
   forwardCube: {fileID: 2813283358695105045}
-  forwardForce: 400
-  upwardForce: 400
+  forwardForce: 0.02
+  upwardForce: 0.04
+  defaultDrag: 1
+  stoppingDrag: 15
+  scalingRange: 0.1
+  timeOfScale: 0.1
+  speedOfScale: 0
+  glideDrag: 0
+  scaleDir: 1
 --- !u!1 &6474529681302832654
 GameObject:
   m_ObjectHideFlags: 0
