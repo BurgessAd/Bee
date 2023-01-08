@@ -52,8 +52,11 @@ public class PollenAttraction : MonoBehaviour
             other.tag="Stuck";
             return;
         }
+        if(other.CompareTag("Bear")){
+            Debug.Log("Game Over");
+            return;
+        }
         Debug.Log(other.tag);
-
     }
 
     private void OnTriggerExit(Collider other) {
